@@ -6,12 +6,12 @@ RUN echo 'deb https://deb.nodesource.com/node_4.x jessie main' > /etc/apt/source
 RUN apt-get update && apt-get -y install nodejs
 RUN mkdir -p /go/src/gitlab.com/tamasd && cd /go/src/gitlab.com/tamasd && git clone --branch 1.0-alpha.0 https://gitlab.com/tamasd/ab.git
 RUN cd /go/src/gitlab.com/tamasd/ab && go get ./... ; exit 0
-RUN go get github.com/hyperbolictonic/walkhub-service
+RUN go get github.com/Pronovix/walkhub-service
 
-WORKDIR /go/src/github.com/hyperbolictonic/walkhub-service
+WORKDIR /go/src/github.com/Pronovix/walkhub-service
 RUN echo '{}' > config.json
 RUN npm install
-RUN go install github.com/hyperbolictonic/walkhub-service/cmd/walkhub
+RUN go install github.com/Pronovix/walkhub-service/cmd/walkhub
 
 ENTRYPOINT npm run webpack && /go/bin/walkhub
 
